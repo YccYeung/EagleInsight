@@ -13,24 +13,24 @@ Security news from several sources in one feed, built as an installable web app 
 ## How it works
 
 ```
-RSS feeds ──> backend (FastAPI) ──> SQLite ──> /api/articles ──> frontend (PWA)
+RSS feeds ──> backend-go ──> SQLite ──> /api/articles ──> frontend (PWA)
 ```
 
-- `backend/app/feeds.py`: the source list, fetching, and cleaning. Feed content is untrusted, so HTML is stripped and only `http(s)` links are kept.
-- `backend/app/db.py`: SQLite storage. Articles are de-duplicated by link.
-- `backend/app/main.py`: the API, the refresh schedule, and serving the frontend.
+- `backend-go/internal/feeds`: the source list, fetching, and cleaning. Feed content is untrusted, so HTML is stripped and only `http(s)` links are kept.
+- `backend-go/internal/store`: SQLite storage. Articles are de-duplicated by link.
+- `backend-go/internal/api`, `backend-go/main.go`: the API, the refresh schedule, and serving the frontend.
 - `frontend/`: plain HTML, CSS, and JavaScript with no build step, plus the manifest and service worker that make it installable.
 
 ## Run it locally
 
-You need [uv](https://docs.astral.sh/uv/).
+You need [Go](https://go.dev/dl/) 1.26+.
 
 ```sh
-cd backend
-uv run uvicorn app.main:app --port 8077
+cd backend-go
+FRONTEND_DIR=../frontend go run .
 ```
 
-Then open http://127.0.0.1:8077. The first start takes a few seconds while it fetches the feeds.
+Then open http://127.0.0.1:8080. The first start takes a few seconds while it fetches the feeds.
 
 ## API
 
@@ -43,7 +43,7 @@ Then open http://127.0.0.1:8077. The first start takes a few seconds while it fe
 
 ## Adding a source
 
-Add a `(name, feed URL)` pair to `SOURCES` in `backend/app/feeds.py`.
+Add a `(name, feed URL)` pair to `Sources` in `backend-go/internal/feeds/feeds.go`.
 
 ## Roadmap
 
