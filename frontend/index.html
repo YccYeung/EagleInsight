@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EagleInsight</title>
+  <meta name="description" content="Security news from the sources worth reading, in one feed.">
+  <meta name="theme-color" content="#0f1419">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-row">
+      <h1>EagleInsight</h1>
+      <button id="refresh" class="icon-button" type="button" aria-label="Refresh feeds">↻</button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search articles" autocomplete="off" aria-label="Search articles">
+    <nav id="filters" class="chips" aria-label="Filter by source"></nav>
+  </header>
+
+  <main>
+    <p id="status" class="status" role="status" hidden></p>
+    <ul id="articles" class="articles"></ul>
+    <button id="load-more" class="load-more" type="button" hidden>Load more</button>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

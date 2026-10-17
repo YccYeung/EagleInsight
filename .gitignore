@@ -1,0 +1,16 @@
+# Go
+backend-go/eagleinsight
+/eagleinsight-go
+
+# Local data
+*.db
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
